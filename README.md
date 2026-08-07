@@ -26,7 +26,6 @@ python3 -m http.server 8000
 | Connect / Conectar | Abre el menú nativo de compartir; si no existe, copia el enlace |
 | WhatsApp | `wa.me/593958938838` |
 | Send mail / Enviar correo | `mailto:israedu_18@hotmail.com` |
-| X | **Pendiente:** apunta a `https://x.com/` — reemplazar por el perfil real |
 
 ## Editar los datos
 
