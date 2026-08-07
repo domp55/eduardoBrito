@@ -22,10 +22,10 @@ python3 -m http.server 8000
 
 | Botón | Acción |
 |---|---|
-| Guardar contacto | Genera y descarga un `.vcf` (vCard 3.0) con la foto incrustada |
-| Conectar | Abre el menú nativo de compartir; si no existe, copia el enlace |
+| Save contact / Guardar contacto | Genera y descarga un `.vcf` (vCard 3.0) con la foto incrustada |
+| Connect / Conectar | Abre el menú nativo de compartir; si no existe, copia el enlace |
 | WhatsApp | `wa.me/593958938838` |
-| Enviar correo | `mailto:israedu_18@hotmail.com` |
+| Send mail / Enviar correo | `mailto:israedu_18@hotmail.com` |
 | X | **Pendiente:** apunta a `https://x.com/` — reemplazar por el perfil real |
 
 ## Editar los datos
@@ -45,6 +45,9 @@ para el retrato) para que el archivo no se dispare de tamaño.
 
 ## Idioma
 
-Al cargar detecta el idioma del navegador y arranca en inglés solo si es `en-*`.
-Para dejar la tarjeta en un único idioma, elimina el bloque `<div class="lang">`
-y fija el valor inicial de la variable `lang`.
+La tarjeta arranca **siempre en inglés** (es para uso en el extranjero); el
+visitante cambia a español con el selector ES/EN de la esquina. El HTML estático
+también está escrito en inglés para que no haya parpadeo antes de que corra el
+JS. Para cambiar el idioma inicial, edita `var lang = 'en';` en el `<script>`.
+Para dejar la tarjeta en un único idioma, elimina además el bloque
+`<div class="lang">`.
