@@ -31,10 +31,17 @@ python3 -m http.server 8000
 ## Editar los datos
 
 Los textos están en dos lugares y hay que tocar ambos para que el selector
-ES/EN siga cuadrando:
+siga cuadrando:
 
-1. El HTML visible, en los elementos con atributo `data-i18n`.
-2. El objeto `STRINGS` del `<script>`, que guarda las dos versiones de idioma.
+1. El HTML visible, en los elementos con atributo `data-i18n`. Va en inglés,
+   que es el idioma inicial.
+2. El objeto `STRINGS` del `<script>`, con un bloque por idioma (`es`, `en`,
+   `zh`). Las claves `title` (cargo corto para el vCard) y `auto` (tooltip del
+   botón AUTO) no se pintan en el HTML, pero deben existir en los tres.
+
+Para añadir un idioma: copia un bloque de `STRINGS`, tradúcelo, añade su
+etiqueta BCP 47 a `HTML_LANG`, mete una línea en `detectLang()` y añade el
+botón en `<div class="lang">`.
 
 El teléfono aparece en tres sitios: el enlace `tel:`, el enlace `wa.me` y la
 línea `TEL` del vCard.
@@ -45,9 +52,16 @@ para el retrato) para que el archivo no se dispare de tamaño.
 
 ## Idioma
 
-La tarjeta arranca **siempre en inglés** (es para uso en el extranjero); el
-visitante cambia a español con el selector ES/EN de la esquina. El HTML estático
-también está escrito en inglés para que no haya parpadeo antes de que corra el
-JS. Para cambiar el idioma inicial, edita `var lang = 'en';` en el `<script>`.
-Para dejar la tarjeta en un único idioma, elimina además el bloque
-`<div class="lang">`.
+La tarjeta arranca **siempre en inglés** (es para uso en el extranjero). El
+selector de la esquina ofrece cuatro opciones: `AUTO`, `ES`, `EN` y `中文`.
+El HTML estático también está escrito en inglés para que no haya parpadeo antes
+de que corra el JS.
+
+`AUTO` recorre `navigator.languages` y muestra el primer idioma que esté
+traducido; si el dispositivo está en francés, portugués o cualquier otro, cae a
+inglés. No traduce por sí solo: solo elige entre los diccionarios que existen.
+Ojo, un dispositivo en chino tradicional (`zh-TW`) recibe el simplificado.
+
+Para cambiar el idioma inicial, edita la última línea del bloque de idioma:
+`applyLang('en')` — acepta también `'auto'`. Para dejar la tarjeta en un único
+idioma, elimina además el bloque `<div class="lang">`.
